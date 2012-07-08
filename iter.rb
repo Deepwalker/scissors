@@ -59,6 +59,13 @@ module Iterate
           }
         end
       end
+
+      def chain(*args)
+        FiberIter.new Fiber.new {
+          args.each { |arg| arg.each { |e| Fiber.yield e } }
+          raise StoppedIterator
+        }
+      end
     end
 
   end

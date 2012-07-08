@@ -12,6 +12,7 @@ s.each {
     p Iterate::next(fi)
 }
 
+puts 'Test Enumerable interface'
 s.iter.each {|e| p e }
 
 
@@ -19,3 +20,7 @@ puts 'Test tee'
 a, b = Iterate::FiberIter::tee(s.iter)
 p b.nxt
 p a.to_a.zip b
+
+puts 'Test chain'
+chain = Iterate::FiberIter::chain(s.iter, s.iter)
+chain.each { |e| puts e }
