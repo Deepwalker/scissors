@@ -18,9 +18,10 @@ s.iter.each {|e| p e }
 
 puts 'Test tee'
 a, b = Iterate::FiberIter::tee(s.iter)
-p b.nxt
+b.nxt # Consume first element from iterator
 p a.to_a.zip b
 
 puts 'Test chain'
-chain = Iterate::FiberIter::chain(s.iter, s.iter)
-chain.each { |e| puts e }
+p Iterate::FiberIter::chain(s, s).select {|i| i < 3}
+
+p Iterate::FiberIter::from_iterable([s, s]).select {|i| i > 3}

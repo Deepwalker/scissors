@@ -66,6 +66,10 @@ module Iterate
           raise StoppedIterator
         }
       end
+
+      def from_iterable(args)
+        chain *args
+      end
     end
 
   end
